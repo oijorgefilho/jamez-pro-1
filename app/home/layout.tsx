@@ -1,5 +1,5 @@
 import { AuthProvider } from '@/contexts/AuthContext'
-import { Providers } from '@/app/providers'
+import { Providers } from '../providers'
 
 export default function HomeLayout({
   children
