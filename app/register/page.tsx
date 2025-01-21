@@ -2,9 +2,9 @@
 
 import { useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuth } from '@/contexts/AuthContext'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { useAuth } from '../contexts/AuthContext'
+import { Input } from '../components/ui/input'
+import { Button } from '../components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
 import Background from '../login/components/Background'
