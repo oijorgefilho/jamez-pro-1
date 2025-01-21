@@ -25,14 +25,18 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ image, onCropFinish, onCanc
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
 
-  const showCroppedImage = useCallback(async () => {
+  const handleCropFinish = async () => {
     try {
       const croppedImage = await getCroppedImg(image, croppedAreaPixels)
-      onCropFinish(croppedImage)
+      if (typeof croppedImage === 'string') {
+        onCropFinish(croppedImage)
+      } else {
+        console.error('Imagem cortada inválida')
+      }
     } catch (e) {
       console.error(e)
     }
-  }, [croppedAreaPixels, onCropFinish, image])
+  }
 
   const ColorfulButton: React.FC<{ onClick: () => void; children: React.ReactNode }> = ({ onClick, children }) => (
     <button
@@ -64,7 +68,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ image, onCropFinish, onCanc
           >
             Cancelar
           </button>
-          <ColorfulButton onClick={showCroppedImage}>
+          <ColorfulButton onClick={handleCropFinish}>
             Selecionar
           </ColorfulButton>
         </div>
