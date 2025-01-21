@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { WalletButton } from '@/app/wallet/WalletButton'
+import { WalletButton } from '../wallet/WalletButton'
 import { useRouter } from 'next/navigation'
 import { X } from 'lucide-react'
 
