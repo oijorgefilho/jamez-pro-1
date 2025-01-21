@@ -1,28 +1,36 @@
-type LogLevel = 'info' | 'warn' | 'error'
+// Simple logging utility
+type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
 class Logger {
-  private prefix = '[Jamez]'
+  private isDevelopment = process.env.NODE_ENV === 'development';
 
-  private formatMessage(level: LogLevel, message: string, data?: any) {
-    const timestamp = new Date().toISOString()
-    const formattedMessage = `${this.prefix} [${timestamp}] [${level.toUpperCase()}] ${message}`
-    if (data) {
-      return { message: formattedMessage, data }
+  private formatMessage(level: LogLevel, message: string, ...args: any[]) {
+    const timestamp = new Date().toISOString();
+    return `[${timestamp}] [${level.toUpperCase()}] ${message}`;
+  }
+
+  info(message: string, ...args: any[]) {
+    if (this.isDevelopment) {
+      console.log(this.formatMessage('info', message), ...args);
     }
-    return formattedMessage
   }
 
-  info(message: string, data?: any) {
-    console.log(this.formatMessage('info', message, data))
+  warn(message: string, ...args: any[]) {
+    if (this.isDevelopment) {
+      console.warn(this.formatMessage('warn', message), ...args);
+    }
   }
 
-  warn(message: string, data?: any) {
-    console.warn(this.formatMessage('warn', message, data))
+  error(message: string, ...args: any[]) {
+    console.error(this.formatMessage('error', message), ...args);
   }
 
-  error(message: string, error?: any) {
-    console.error(this.formatMessage('error', message, error))
+  debug(message: string, ...args: any[]) {
+    if (this.isDevelopment) {
+      console.debug(this.formatMessage('debug', message), ...args);
+    }
   }
 }
 
-export const log = new Logger() 
+export const log = new Logger();
+

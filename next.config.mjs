@@ -1,3 +1,9 @@
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 let userConfig = undefined
 try {
   userConfig = await import('./v0-user-next.config')
@@ -28,10 +34,13 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': '.',
+  webpack: (config, { isServer }) => {
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        '@': path.join(__dirname, 'app')
+      }
     }
     return config
   }
