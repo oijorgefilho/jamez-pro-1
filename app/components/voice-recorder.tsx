@@ -26,6 +26,7 @@ const VoiceRecorder = forwardRef<{ resetButtonState: () => void }, VoiceRecorder
       startRecording,
       stopRecording,
       mediaBlobUrl,
+      error
     } = useReactMediaRecorder({
       audio: true,
       video: false,
@@ -39,16 +40,19 @@ const VoiceRecorder = forwardRef<{ resetButtonState: () => void }, VoiceRecorder
       onStop: (blobUrl, blob) => {
         console.log('Recording stopped, blob size:', blob.size);
         onStopRecording(blob);
-      },
-      onError: (error) => {
+      }
+    });
+
+    useEffect(() => {
+      if (error) {
         console.error('Error during recording:', error);
         toast({
           variant: "destructive",
           title: "Erro na Gravação",
           description: "Ocorreu um erro durante a gravação. Por favor, tente novamente."
         });
-      },
-    });
+      }
+    }, [error, toast]);
 
     const handleToggleRecording = async () => {
       console.log('handleToggleRecording called');
