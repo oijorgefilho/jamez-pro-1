@@ -77,7 +77,7 @@ export default function LoginForm({ onSubmit }: LoginFormProps) {
       <Button
         type="submit"
         disabled={isLoading}
-        variant="gradient"
+        variant="default"
         className="w-full py-6 rounded-full font-medium"
       >
         {isLoading ? 'Entrando...' : 'ENTRAR'}

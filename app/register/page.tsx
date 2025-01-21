@@ -8,8 +8,8 @@ import { Button } from '../components/ui/button'
 import Link from 'next/link'
 import Image from 'next/image'
 import Background from '../login/components/Background'
-import { showToast } from '@/components/ui/custom-toast'
-import { log } from '@/utils/logger'
+import { showToast } from '../components/ui/custom-toast'
+import { log } from '../utils/logger'
 
 const formatPhoneNumber = (value: string) => {
   const phoneNumber = value.replace(/\D/g, '')

@@ -1,4 +1,4 @@
-import { Providers } from '@/app/providers'
+import { Providers } from '../providers'
 
 // Layout component for the register page
 export default function RegisterLayout({

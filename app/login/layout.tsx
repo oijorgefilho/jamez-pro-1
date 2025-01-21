@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { Providers } from '@/app/providers'
+import { Providers } from '../providers'
 
 export const metadata: Metadata = {
   title: 'Login | Jamez AI Assistant',
