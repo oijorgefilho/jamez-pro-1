@@ -4,6 +4,9 @@ const nextConfig = {
     // Desabilita a verificação do ESLint durante o build
     ignoreDuringBuilds: true,
   },
+  images: {
+    domains: ['jamez.pro'],
+  },
   // ... existing code ...
 }
 
